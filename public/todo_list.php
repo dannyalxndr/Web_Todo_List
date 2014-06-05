@@ -4,18 +4,17 @@ $filename = 'list.txt';
 $newitems = getfile($filename);
 $errorMessage = '';
 
-function savefile($savefilepath, $array) 
+function save_file($filename, $array)
 {
-    $filename = $savefilepath;
     if (is_writable($filename)) 
     {
         $handle = fopen($filename, 'w');
-        foreach($array as $item) 
+        foreach($array as $items)
         {
-            fwrite($handle, PHP_EOL . $item);
+            fwrite($handle, PHP_EOL . $items);
         }
-        fclose($handle); 
-    }   
+        fclose($handle);
+    }
 }
 
 function getfile($filename) 
@@ -28,26 +27,24 @@ function getfile($filename)
         $contents = trim(fread($handle, $bytes));
         fclose($handle);
         $contents = explode("\n", $contents);
+        save_file($filename, $contents);
     }
     return $contents;
 } 
 
-// check if we need to remove an item from the list
 if (isset($_GET['removeitem'])) 
 {
     $removeindex = $_GET['removeitem'];
     unset($newitems[$removeindex]);
-    savefile($filename, $newitems);
+    save_file($filename, $newitems);
 }
 
-// do we need to add a new item?
 if (!empty($_POST['todoitem'])) 
 {
     array_push($newitems, $_POST['todoitem']);
-    savefile($filename, $newitems);
+    save_file($filename, $newitems);
 }
 
-// Verify there were uploaded files and no errors
 if (count($_FILES) > 0 && $_FILES['file1']['error'] == 0) 
 {
 
@@ -66,7 +63,7 @@ if (count($_FILES) > 0 && $_FILES['file1']['error'] == 0)
         $newfile = getfile($textfile);
         $newitems = array_merge($newfile, $newitems);
 
-        savefile($filename, $newitems);
+        save_file($filename, $newitems);
 
     } 
     else 
@@ -82,40 +79,41 @@ if (count($_FILES) > 0 && $_FILES['file1']['error'] == 0)
 
 <head>
     <title>Todo PHP</title>
+    <link rel="stylesheet" href="/css/stylesheet.css">
 </head>
 <body>
-    <h3>My TODO List</h3>
+    <h3 class="main-header">My TODO List</h3>
     
     <? if(!empty($errorMessage)) : ?>
         <?= $errorMessage; ?>
     <? endif; ?>
 
-    <ul>
-    <? foreach($newitems as $index => $items) : ?>
-    <li><?= $items; ?><a href='?removeitem=$index'> Mark Complete</a></li>
-    <? endforeach; ?>
-    </ul>
-
-    <h3>Please add an item to do the todo list!</h3>
-    <form method="POST" action="/todo_list.php">
+    <h3 class="header">Please add an item to do the todo list!</h3>
+    <form class="form" method="POST" action="/todo_list.php">
         <p>
-            <label for="todoitem">Add Todo Item</label>
-            <input id="todoitem" name="todoitem" type="text" placeholder="Enter Your Item">
+<!--             <label class="label"for="todoitem">Add Todo Item</label>
+ -->            <input class="input"id="todoitem" name="todoitem" type="text" placeholder="Enter Your Item">
         </p>
             <input type="submit" value="Submit">
         </p>
     </form>
 
-    <h3>Upload File</h3>
-    <form method="POST" enctype="multipart/form-data">
+    <h3 class="header">Upload File</h3>
+    <form class="form" method="POST" enctype="multipart/form-data">
         <p>
-            <label for="file1">File to upload: </label>
-            <input type="file" id="file1" name="file1">
+            <label class="label" for="file1">File to upload: </label>
+            <input class="input" type="file" id="file1" name="file1">
         </p>
         <p>
             <input type="submit" value="Upload">
         </p>
     </form>
+
+     <ul>
+        <? foreach($newitems as $index => $items) : ?>
+        <li id="items"><?= htmlspecialchars(strip_tags($items)); ?><a href='?removeitem=$index'> Mark Complete</a></li>
+        <? endforeach; ?>
+    </ul>
 
 </body>
 </html>
