@@ -1,0 +1,53 @@
+body {
+	background-image: url('/img/background_03.jpg');
+	background-size: 100%;
+	color: #FFF;
+}
+
+th {
+	font-size: 20px;
+	border: 1px solid black;
+}
+td {
+	font-size: 18px;
+	border: 1px solid black;
+}
+.table {
+	background-color: #636361;
+	border: 1px solid black;
+	opacity:0.85;
+	color: #fff;
+	margin-top: 5px;
+}
+.main-header {
+	color: #fff;
+	text-shadow: 0 0 5px #D0DFED, 0 0 10px #BCC9D6, 0 0 15px #2C3332, 0 0 20px #4B5755, 0 0 30px #4B5755, 0 0 40px #657573, 0 0 50px #657573, 0 0 75px #8DA3A1;
+	letter-spacing: 4px;
+	top: -10px;
+	font: 60px 'MisoRegular';
+	text-align: center;
+}
+#bigContainer {
+	position: absolute;
+	left: 570px;
+	margin-top: 20px;
+}
+#addItemForm {
+
+
+}
+#addItemHeader {
+	font-size: 30px;
+	color: #fff;
+	bottom: 610px;
+	left: 48px;
+	position: absolute;
+	text-align: center;
+}
+
+
+
+
+
+
+

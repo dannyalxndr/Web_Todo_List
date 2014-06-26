@@ -1,0 +1,55 @@
+/*
+
+Add a style to change the color of the headers on your page and make them underlined.
+Add a style to change the background color of the page.
+Add a style to change the list-style to something other than the default.
+Add a style to change the font for the entire page.
+
+*/
+
+.main-header {
+	color: #E0F0FF;
+	text-shadow: 0 0 5px #D0DFED, 0 0 10px #BCC9D6, 0 0 15px #2C3332, 0 0 20px #4B5755, 0 0 30px #4B5755, 0 0 40px #657573, 0 0 50px #657573, 0 0 75px #8DA3A1;
+	letter-spacing: 4px;
+	font: 80px 'MisoRegular';
+	text-align: center;
+}
+
+.header {
+	color: #34373B;
+	font: 25px 'ChunkFiveRegular';
+}
+
+#add-item {
+	bottom: 350px;
+	font-size: 15px;
+	color: black;
+}
+
+#add-item-header {
+	bottom: 400px;
+}
+
+#upload-file {
+	position: absolute;
+	left: 1000px;
+	bottom: 310px;
+	font-size: 15px;
+	color: black;
+}
+
+#upload-file-header {
+	position: absolute;
+	left: 1000px;
+	bottom: 375px;
+}
+
+#items {
+	color: #000;
+}
+
+body {
+	background-image: url(http://media.giphy.com/media/euuaA2cwLEUuI/giphy.gif);
+	background-size:1500px 700px;
+	color: #FFF;
+}
